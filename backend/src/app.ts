@@ -9,3 +9,9 @@ app.get("/", (req, res) => {    //END POINT GET que devuelve un mensaje
         message: "API funcionando",
     })
 });
+
+app.get("/algo", (req, res) => {    //END POINT GET que devuelve un mensaje
+    res.json({                  // en formato JSON
+        message: "algo funcionando",
+    })
+});

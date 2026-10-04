@@ -35,7 +35,7 @@ Bicycle.init(
         model: {
             type: DataTypes.STRING(150),
             allowNull: false,
-        }
+        },
         description: {
             type: DataTypes.TEXT,
             allowNull: true,

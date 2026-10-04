@@ -1,8 +1,11 @@
 import express from "express";  //importamos librería
+import apiRouter from "./routes";
 
 export const app = express();   //se usa express usando constante app
 
 app.use(express.json());
+
+app.use("/api", apiRouter);
 
 app.get("/", (req, res) => {    //END POINT GET que devuelve un mensaje
     res.json({                  // en formato JSON

@@ -1,4 +1,5 @@
 import { Bicycle } from "./bicycle.model";
+
 export class BicycleService {
     static async findAll() {
         return Bicycle.findAll({

@@ -12,18 +12,18 @@ async function startServer() {
         await sequelize.authenticate();
         console.log("Conection to MySQL established.");
 
-        await (await sequelize.sync({force: true})).then(() => {
+        await sequelize.sync({force: true}).then(() => {
             console.log("Drop and re-sync db.");
         });
         
         app.listen(env.PORT, () => {
             console.log(
-                `Servidor funcionando en http://localhost:3000`
+                `Servidor funcionando en http://localhost:${env.PORT}`
             );
         });
     } catch (error) {
         console.error(
-            "No se pudo iniciar la aplicación",
+            "No se pudo iniciar la aplicación:",
             error
         );
         process.exit(1);

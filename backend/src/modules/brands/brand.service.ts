@@ -31,6 +31,11 @@ export class BrandService {
         return Brand.create(data);  //sequelize se encarga de crear el ID incremental
     }
 
+    //ACTUALIZAR MARCA EXISTENTE
+    static async update(brand: Brand, data: Partial<{ name: string }>) {
+        return brand.update(data);
+    }
+
     //ELIMINAR MARCA
     //ejecuta DELETE FROM en MYSQL eliminando la fila correspondiente
     static async delete(brand: Brand) {

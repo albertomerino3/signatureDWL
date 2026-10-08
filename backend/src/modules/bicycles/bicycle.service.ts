@@ -1,40 +1,63 @@
 import { Bicycle } from "./bicycle.model";
+import { Brand } from "../brands/brand.model";
 
 export class BicycleService {
+
+    //OBTENER TODAS LAS BICICLETAS (y la marca asociada)
+
     static async findAll() {
         return Bicycle.findAll({
+            include: [
+                {
+                    model: Brand,
+                },
+            ],
             order: [["id", "ASC"]],
         });
     }
     
-    static async findById(id: number) {
+    //BUSCAR BICICLETA POR ID (incluyendo marca asociada)
 
+    static async findById(id: number) {
+        return Bicycle.findByPk(id, {
+            include: [
+                {
+                    model: Brand,
+                },
+            ],
+        });
     }
 
+    //CREAR NUEVA BICICLETA
+
     static async create(data: {
-        brand: string;
         model: string;
         description?: string | null;
         price: number;
         stock: number;
+        brandId: number; //clave foránea
     }) {
-  ;
+       return Bicycle.create(data as any); 
     }
+
+    //ACTUALIZAR UNA BICICLETA EXISTENTE
 
     static async update(
         bicycle: Bicycle,
         data: {
-            brand?: string;
-            models?: string;
+            model?: string;
             description?: string | null;
             price?: number;
             stock?: number;
+            brandId?: number;
         }
     ) {
-
+        return bicycle.update(data);
     }
 
-    static async delete(bicycle: Bicycle) {
+    //ELIMINAR UNA BICICLETA
 
+    static async delete(bicycle: Bicycle) {
+        await bicycle.destroy();
     }
 }
